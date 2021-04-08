@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Light Reader Portal</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+
+  <body>
+    <div id="passwordModal" class="modal">
+      <div class="modal-content">
+        <img src=GIHSLogo.png height=100px width=100px><br><br>
+        <h1>Welcome to the Light Reader Portal.</h1></br>
+        <p for="psw"><b>This portal is password protected.</b></p></br> 
+        <input type="password" placeholder="Enter Password" id="psw" name="psw" required></br></br>
+        <span class="done"><i class="material-icons" id="check">double_arrow</i><p id="doneText">Continue</p></span>
+      </div>
+    </div>
+
+    <div id="settingsModal" class="settingsModal">
+      <div class="settingsModal-content">
+        <div class="column1">
+          <h3 style="text-align: left">Settings</h3>
+          <input type="checkbox"><label>&nbsp; Power Saving Mode</label></br></br>
+          <input type="checkbox"><label>&nbsp; Compatibility Mode</label></br></br>
+          <input type="checkbox"><label>&nbsp; Use NEM Time</label></br></br>
+          <input type="checkbox"><label>&nbsp; Legacy Sensor Data</label></br></br></br>
+          <input type="button" id="cancel" value="Save">
+        </div>
+        <div class="column2">
+          <h3 style="text-align: left">Your Sensors (5/5)</h3>
+          <ul type="square">
+            <li>&nbsp; English Wing</li>
+            <li>&nbsp; Language Wing</li>
+            <li>&nbsp; Humanities Wing</li>
+            <li>&nbsp; Maths Wing</li>
+            <li>&nbsp; Learning Hub</li></br>
+          </ul>
+          <input type="button" value="Add New Sensor" disabled>
+          </br><p id="settingsNote">You have reached your maximum Light Reader sensor limit. Please <u>upgrade your Light Reader</u> plan to add more sensors.</p>
+        </div>
+      </div>
+    </div> 
+
+    <div class="container">
+      <div class="settingsButton">
+        <span id=settingsButton><i class="material-icons" id="settingsIcon">settings</i></span>
+      </div>
+      <div class="line"></div>
+      <div class="header">
+        <h1>LIGHT READER PORTAL</h1>
+        <h2>Glenunga International High School</h2>
+        </div>
+    </div><br>
+    <div class="app">
+      <h2>SENSOR OVERVIEW (Mon 18/05/2020)</h2>
+      <canvas id="chart" width="400" height="100"></canvas>
+        <div class="dropdown">
+        <p>Select Viewing Range</p></br>
+        <label for="min"><b>Start Time:</b></label>
+        <select id="min" name="min" onchange="changeMin()">
+          <option value="none" selected disabled hidden>08:00</option>
+          <option value="08:00">08:00</option>
+          <option value="08:01">08:01</option>
+          <option value="08:02">08:02</option>
+          <option value="08:03">08:03</option>
+          <option value="08:04">08:04</option>
+          <option value="08:05">08:05</option>
+          <option value="08:06">08:06</option>
+          <option value="08:07">08:07</option>
+          <option value="08:08">08:08</option>
+          <option value="08:09">08:09</option>
+          <option value="08:10">08:10</option>
+          <option value="08:11">08:11</option>
+          <option value="08:12">08:12</option>
+          <option value="08:13">08:13</option>
+          <option value="08:14">08:14</option>
+          <option value="08:15">08:15</option>
+          <option value="08:16">08:16</option>
+          <option value="08:17">08:17</option>
+          <option value="08:18">08:18</option>
+          <option value="08:19">08:19</option>
+          <option value="08:20">08:20</option>
+          <option value="08:21">08:21</option>
+          <option value="08:22">08:22</option>
+          <option value="08:23">08:23</option>
+          <option value="08:24">08:24</option>
+          <option value="08:25">08:25</option>
+          <option value="08:26">08:26</option>
+          <option value="08:27">08:27</option>
+          <option value="08:28">08:28</option>
+          <option value="08:29">08:29</option>
+          <option value="08:30">08:30</option>
+        </select>
+        <label for="max"><b>⁝ End Time:</b></label>
+        <select id="max" name="max" onchange="changeMax()">       
+          <option value="none" selected disabled hidden>08:30</option>
+          <option value="08:00">08:00</option>
+          <option value="08:01">08:01</option>
+          <option value="08:02">08:02</option>
+          <option value="08:03">08:03</option>
+          <option value="08:04">08:04</option>
+          <option value="08:05">08:05</option>
+          <option value="08:06">08:06</option>
+          <option value="08:07">08:07</option>
+          <option value="08:08">08:08</option>
+          <option value="08:09">08:09</option>
+          <option value="08:10">08:10</option>
+          <option value="08:11">08:11</option>
+          <option value="08:12">08:12</option>
+          <option value="08:13">08:13</option>
+          <option value="08:14">08:14</option>
+          <option value="08:15">08:15</option>
+          <option value="08:16">08:16</option>
+          <option value="08:17">08:17</option>
+          <option value="08:18">08:18</option>
+          <option value="08:19">08:19</option>
+          <option value="08:20">08:20</option>
+          <option value="08:21">08:21</option>
+          <option value="08:22">08:22</option>
+          <option value="08:23">08:23</option>
+          <option value="08:24">08:24</option>
+          <option value="08:25">08:25</option>
+          <option value="08:26">08:26</option>
+          <option value="08:27">08:27</option>
+          <option value="08:28">08:28</option>
+          <option value="08:29">08:29</option>
+          <option value="08:30">08:30</option>
+        </select>
+      </div></br></br>
+      <div class="info">
+        <p id="existingText"><i class="material-icons" id="infoIcon">help_outline</i> <u>How does this chart work?</u></p>
+        <span class="infoText">The above graph depicts the Light Reader Digital Values of each Light Reader over a specific period of time, which can be adjusted using the 'Select Viewing Range' dropdown boxes. </br></br> You can also hover over a data point to see the specific values for a Light Reader. </br></br> To hide a Light Reader's data on the graph, click on the legend label for the respective Light Reader.</span>
+      </div>
+    </div>
+    <script>
+      document.getElementById('min').value = '08:00';
+      document.getElementById('max').value = '08:30';
+      document.getElementById("passwordModal")
+      var ctx = document.getElementById('chart');
+      var chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ['08:00', '08:01', '08:02', '08:03', '08:04', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10', '08:11', '08:12', '08:13', '08:14', '08:15', '08:16', '08:17', '08:18', '08:19', '08:20', '08:21', '08:22', '08:23', '08:24', '08:25', '08:26', '08:27', '08:28', '08:29', '08:30'],
+              datasets: [
+                {
+                  label: 'English Wing',
+                  data: [22, 22, 21, 20, 22,  22, 129, 129, 132, 132, 132, 132, 122, 124, 125, 132, 132, 132, 132, 131, 132, 132, 132, 21, 22, 21, 21, 22, 132, 132, 132],
+                  backgroundColor: '#4285F4',
+                  borderColor: '#4285F4',
+                  borderWidth: 5
+              },{
+                  label: 'Language Wing',
+                  data: [33, 33, 32, 32, 32, 32, 31, 32, 32, 32, 31, 31, 111, 111, 111, 111, 112, 112, 112, 111, 111, 110, 111, 111, 111, 32, 32, 113, 112, 112, 112],
+                  backgroundColor: '#FBBC05',
+                  borderColor: '#FBBC05',
+                  borderWidth: 5
+              },{
+                  label: 'Humanities Wing',
+                  data: [42, 41, 43, 42, 41, 41, 42, 43, 42, 41, 43, 42, 42, 41, 42, 43, 43, 42, 42, 138, 143, 142, 139, 138, 139, 138, 138, 138, 140, 139, 139],
+                  backgroundColor: '#EA4335',
+                  borderColor: '#EA4335',
+                  borderWidth: 5
+              },{
+                  label: 'Maths Wing',
+                  data: [12, 12, 12, 13, 12, 12, 12, 13, 12, 11, 12, 12, 13, 13, 19, 21, 20, 18, 12, 13, 12, 147, 148, 148, 149, 148, 148, 149, 147, 147, 149],
+                  backgroundColor: '#34A853',
+                  borderColor: '#34A853',
+                  borderWidth: 5
+              },{
+                  label: 'Learning Hub',
+                  data: [182, 182, 182, 183, 182, 182, 182, 183, 182, 181, 182, 182, 183, 183, 189, 189, 190, 188, 192, 193, 192, 187, 188, 188, 189, 188, 188, 189, 187, 187, 189],
+                  backgroundColor: '#6a0dad',
+                  borderColor: '#6a0dad',
+                  borderWidth: 5
+                  
+              }
+            ]
+          },
+          options: {
+            legend: {
+              labels: {
+                fontSize: 15,
+                padding: 35,
+              }
+            },
+            elements: {
+              line: {
+                cubicInterpolationMode: 'monotone',
+                fill: false,
+                showLine: true,
+              }
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 220,
+                  stepSize: 20,
+                },
+                scaleLabel: {
+                display: true,
+                labelString: "Light Reader Digital Value"
+                }
+              }],
+              xAxes: [{
+                ticks: {
+                },
+                scaleLabel: {
+                display: true,
+                labelString: "Time (in ACST)"
+                }
+              }],
+              
+            },
+            layout: {
+              padding: {
+                left: 50,
+                right: 50,
+                top: -15,
+                bottom: 10
+              }
+            },
+          }
+        });
+
+      function changeMin() {
+        selectMinValue = document.getElementById('min').value;
+        chart.options.scales.xAxes[0].ticks.min = selectMinValue; 
+        chart.update();
+      }
+
+      function changeMax() {
+        selectMaxValue = document.getElementById('max').value;
+        chart.options.scales.xAxes[0].ticks.max = selectMaxValue; 
+        chart.update();
+      }
+
+      var modal = document.getElementById("passwordModal");
+      var span = document.getElementsByClassName("done")[0];
+
+      span.onclick = function() {
+        var confirmPassword = "";
+        var password = document.getElementById("psw").value;
+        if (password == confirmPassword) {
+          modal.style.display = "none";
+        }
+        else{
+            alert("Incorrect password.");
+        }
+      }
+      
+      var settingsModal = document.getElementById("settingsModal");
+      var settingsButton = document.getElementById("settingsButton");
+      var cancel = document.getElementById("cancel");
+      
+      settingsButton.onclick = function() {
+        settingsModal.style.display = "block";
+      }
+
+      cancel.onclick = function() {
+        settingsModal.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
